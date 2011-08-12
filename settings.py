@@ -4,19 +4,19 @@
 from funfactory.settings_base import *
 
 # Logging
-SYSLOG_TAG = "http_app_playdoh"  # Make this unique to your project.
+SYSLOG_TAG = "http_app_charas"  # Make this unique to your project.
 
 
 # Bundles is a dictionary of two dictionaries, css and js, which list css files
 # and js files that can be bundled together by the minify app.
 MINIFY_BUNDLES = {
     'css': {
-        'example_css': (
-            'css/examples/main.css',
+        'common': (
+            'css/charas/core.css',
         ),
     },
     'js': {
-        'example_js': (
+        'common': (
             'js/libs/jquery-1.4.4.min.js',
         ),
     }
@@ -24,8 +24,7 @@ MINIFY_BUNDLES = {
 
 
 INSTALLED_APPS = list(INSTALLED_APPS) + [
-    # Example code. Can (and should) be removed for actual projects.
-    'examples',
+    'generators',
 ]
 
 
