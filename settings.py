@@ -23,6 +23,7 @@ MINIFY_BUNDLES = {
         'common': (
             'js/libs/jquery-1.6.3.js',
             'js/libs/bootstrap-tabs.js',
+            'js/libs/bootstrap-dropdown.js',
         ),
         'generators': (
             'js/libs/ICanHaz.js',
