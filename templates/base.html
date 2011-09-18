@@ -9,14 +9,19 @@
   </head>
   <body>
     <div class="topbar">
-      <div class="container fixed">
-        <h3><a class="logo" href="{{ url('home') }}">
-          <!-- <img src="{{ MEDIA_URL }}img/template/charas_head.png" alt="Twitter" />--> <span>{{ _('Charas-Project') }}</span>
-        </a></h3>
-        <ul>
-          {% set section = section|default('home') %}
-          {% include 'layout/navigation.html' %}
-        </ul>
+      <div class="topbar-inner">
+        <div class="container">
+          <h3>
+            <a class="logo" href="{{ url('home') }}">
+              <!-- <img src="{{ MEDIA_URL }}img/template/charas_head.png" alt="Twitter" />-->
+              <span>{{ _('Charas-Project') }}</span>
+            </a>
+          </h3>
+          <ul>
+            {% set section = section|default('home') %}
+            {% include 'layout/navigation.html' %}
+          </ul>
+        </div>
       </div>
     </div>
 

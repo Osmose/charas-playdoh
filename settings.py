@@ -12,12 +12,11 @@ SYSLOG_TAG = "http_app_charas"  # Make this unique to your project.
 MINIFY_BUNDLES = {
     'css': {
         'common': (
-            'css/charas/core.css',
-            'css/bootstrap/bootstrap.css',
-            'css/charas/layout.css',
+            'css/bootstrap.css',
+            'css/layout.css',
         ),
         'generators': (
-            'css/charas/generators.css',
+            'css/generators.css',
         ),
     },
     'js': {
