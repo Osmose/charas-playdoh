@@ -42,7 +42,14 @@ p.loadParts = function() {
             });
             self.drawLayers.sort(self.drawLayerComparitor);
 
-            $('#parts_view').html(ich.parts_tabs({parts: data.objects})).tabs();
+            var view = $('#parts_view');
+            view.html(ich.parts_tabs({parts: data.objects}));
+            view.find('.tab-content div:first').addClass('active');
+
+            var tabs = view.find('.tabs');
+            tabs.find('li:first').addClass('active');
+            tabs.tabs();
+
             self.loadResources();
         }
     });

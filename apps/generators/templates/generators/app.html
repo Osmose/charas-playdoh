@@ -17,11 +17,13 @@
           <li><a href="#parts-{{slug}}">{{name}}</a></li>
         {{/parts}}
       </ul>
-      {{#parts}}
-        <div id="parts-{{slug}}" class="resources" data-part-slug="{{slug}}">
-          {{name}}
-        </div>
-      {{/parts}}
+      <div class="tab-content">
+        {{#parts}}
+          <div id="parts-{{slug}}" class="resources" data-part-slug="{{slug}}">
+            {{name}}
+          </div>
+        {{/parts}}
+      </div>
     </script>
 
     <script type="text/html" id="resources_view">

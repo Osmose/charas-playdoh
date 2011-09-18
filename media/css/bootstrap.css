@@ -1600,8 +1600,7 @@ a.menu:after, .dropdown-toggle:after {
   background-color: #eee;
   border-color: #eee #eee #ddd;
 }
-.tabs > li.active > a,
-.tabs > li.ui-tabs-selected > a {
+.tabs > li.active > a {
   color: #808080;
   background-color: #ffffff;
   border: 1px solid #ddd;
