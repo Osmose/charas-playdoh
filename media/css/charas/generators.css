@@ -1,0 +1,27 @@
+/* Generators */
+#preview-container img {
+    border: 3px solid #000;
+    background: #209C00;
+    display: block;
+    height: 384px;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: -webkit-optimize-contrast;
+    -ms-interpolation-mode: nearest-neighbor;
+    margin: 8px auto;
+    width: 216px;
+}
+
+li.resource {
+    background: #209C00;
+    border: 3px solid #000;
+    float: left;
+    margin-right: 8px;
+}
+
+li.resource img {
+    height: 96px;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: -webkit-optimize-contrast;
+    -ms-interpolation-mode: nearest-neighbor;
+    width: 72px;
+}

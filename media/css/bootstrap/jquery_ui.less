@@ -1,0 +1,15 @@
+@import "bootstrap/bootstrap";
+
+/* Replacements for jQuery UI Classes to work with Twitter Bootstrap */
+
+.ui-tabs-selected a {
+    margin-bottom: -1px;
+    margin-right: 2px;
+    padding: 0 15px;
+    line-height: (@baseline * 2) - 1;
+    .border-radius(3px 3px 0 0);
+    &:hover {
+        background-color: @grayLighter;
+        border-bottom: 1px solid @grayLight;
+    }
+}

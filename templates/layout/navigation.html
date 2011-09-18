@@ -1,0 +1,7 @@
+{% macro nav_li(section_value, name, href) -%}
+  <li {{ section|ifeq(section_value, 'class="active"') }}>
+    <a href="{{ href }}">{{ _(name) }}</a>
+  </li>
+{%- endmacro %}
+
+{{ nav_li('home', 'Home', url('home')) }}

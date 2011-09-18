@@ -14,3 +14,5 @@ build.py
 tmp/*
 *~
 *.mo
+media/uploads/*
+media/css/bootstrap/*.css

@@ -13,20 +13,46 @@ MINIFY_BUNDLES = {
     'css': {
         'common': (
             'css/charas/core.css',
+            'css/bootstrap/bootstrap.css',
+            'css/charas/layout.css',
+        ),
+        'generators': (
+            'css/charas/generators.css',
         ),
     },
     'js': {
         'common': (
-            'js/libs/jquery-1.4.4.min.js',
+            'js/libs/jquery-1.6.3.js',
+            'js/libs/jquery-ui-1.8.16.min.js',
+        ),
+        'generators': (
+            'js/libs/ICanHaz.js',
+            'js/libs/base64.js',
+            'js/libs/canvas2image.js',
+            'js/generators.js',
         ),
     }
 }
 
 
 INSTALLED_APPS = list(INSTALLED_APPS) + [
+    'charas_project',
     'generators',
+    'tastypie',
+    'django.contrib.sites',
+    'django.contrib.messages',
+    'django.contrib.admin',
 ]
 
+# Upload settings
+def gen_resource_path(instance, filename):
+    part = instance.part
+    gen = part.generator
+
+    return 'uploads/generators/%s/%s/%s' % (gen.slug, part.slug, filename)
+
+GENERATOR_RESOURCE_PATH = gen_resource_path
+MAX_FILEPATH_LENGTH = 100
 
 # Tells the extract script what files to look for L10n in and what function
 # handles the extraction. The Tower library expects this.

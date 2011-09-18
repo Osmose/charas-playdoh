@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block site_css %}
+  {{ super() }}
+  {{ css('generators') }}
+{% endblock %}
+
+{% block site_js %}
+  {{ super() }}
+  {{ js('generators') }}
+
+  {# ICanHaz.js Templates #}
+  {% raw %}
+    <script type="text/html" id="parts_tabs">
+      <ul class="tabs">
+        {{#parts}}
+          <li><a href="#parts-{{slug}}">{{name}}</a></li>
+        {{/parts}}
+      </ul>
+      {{#parts}}
+        <div id="parts-{{slug}}" class="resources" data-part-slug="{{slug}}">
+          {{name}}
+        </div>
+      {{/parts}}
+    </script>
+
+    <script type="text/html" id="resources_view">
+      <ul class="unstyled">
+        {{#resources}}
+          <li class="resource" data-resource-id="{{id}}" data-part-slug="{{part_slug}}">
+            <img src="{{preview}}">
+          </li>
+        {{/resources}}
+      </ul>
+    </script>
+  {% endraw %}
+{% endblock %}
+
+{% block page_header %}
+{{ _('Generator:') }} {{ generator.name }}
+{% endblock %}
+
+{% block content %}
+<div id="generator_app" class="row" data-generator="{{ generator.slug }}">
+  <div id="parts_view" class="span9 columns"></div>
+  <div class="span7 columns">
+    <h2>Preview</h2>
+    <div id="preview-container" class="scale-nearest well"></div>
+    <div id="preview-controls">
+      <button id="download" class="btn large primary">Download</button>
+    </div>
+  </div>
+</div>
+{% endblock %}
