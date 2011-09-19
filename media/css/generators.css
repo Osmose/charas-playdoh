@@ -26,3 +26,7 @@ li.resource img {
     -ms-interpolation-mode: nearest-neighbor;
     width: 72px;
 }
+
+.gen-toolbar {
+    padding: 18px 0;
+}

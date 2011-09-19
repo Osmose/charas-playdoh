@@ -44,13 +44,24 @@
 {% endblock %}
 
 {% block content %}
-<div id="generator_app" class="row" data-generator="{{ generator.slug }}">
-  <div id="parts_view" class="span9 columns"></div>
-  <div class="span7 columns">
-    <h2>Preview</h2>
-    <div id="preview-container" class="scale-nearest well"></div>
-    <div id="preview-controls">
-      <button id="download" class="btn large primary">Download</button>
+<div id="generator_app" data-generator="{{ generator.slug }}">
+  <div class="row">
+    <div class="span9 columns">
+      <div id="parts_view" class="clearfix"></div>
+    </div>
+    <div class="span7 columns">
+      <h2>{{ _('Preview') }}</h2>
+      <div id="preview-container" class="scale-nearest well"></div>
+    </div>
+  </div>
+  <div class="row actions gen-toolbar">
+    <div class="span9 columns">
+      <a class="btn success" href="{{ url('generators.upload', slug=generator.slug) }}">
+        {{ _('Upload New Part') }}
+      </a>
+    </div>
+    <div class="span7 columns">
+      <button id="download" class="btn primary">{{ _('Download') }}</button>
     </div>
   </div>
 </div>

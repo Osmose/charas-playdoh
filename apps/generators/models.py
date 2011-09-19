@@ -41,7 +41,6 @@ class Resource(models.Model):
     modified = models.DateTimeField(auto_now=True)
 
     approved = models.BooleanField(default=False, verbose_name=u'Approved')
-    color = models.CharField(max_length=255, verbose_name=u'Color')
 
     resource = models.ImageField(upload_to=settings.GENERATOR_RESOURCE_PATH,
                                  verbose_name=u'Resource',

@@ -14,5 +14,6 @@ v1_api.register(ResourceResource())
 
 urlpatterns = patterns('',
     url(r'^(?P<slug>[\w-]+)$', views.gen_app, name='generators.gen_app'),
+    url(r'^upload/(?P<slug>[\w-]+)$', views.upload, name='generators.upload'),
     (r'^api/', include(v1_api.urls)),
 )

@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% set section='generators' %}
+
+{% block page_header %}
+  {{ _('Upload Resource for Generator:') }} {{ generator.name }}
+{% endblock %}
+
+{% block content %}
+  <p>
+    {% trans %}
+      Use the form below to upload a new resource for use in the
+      generators. Resources will not appear in the generators until they
+      have been approved by a moderator.
+    {% endtrans %}
+  </p>
+  <form method="post" action="" class="form-stacked">
+    {{ csrf() }}
+    <fieldset>
+      {% for field in form %}
+        <div class="clearfix">
+          {{ field.label_tag() }}
+          <div class="input">
+            {{ field }}
+          </div>
+        </div>
+      {% endfor %}
+      <div class="actions">
+        <button type="submit" class="btn primary">{{ _('Upload') }}</button>
+        <a class="btn" href="{{ url('generators.gen_app', slug=generator.slug) }}">
+          {{ _('Cancel') }}
+        </a>
+      </div>
+    </fieldset>
+  </form>
+{% endblock %}
