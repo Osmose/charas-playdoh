@@ -1,3 +1,4 @@
+{% import 'include/navigation.html' as nav %}
 <!DOCTYPE html>
 <html LANG="{{ LANG }}" dir="{{ DIR }}">
   <head>
@@ -17,14 +18,22 @@
               <span>{{ _('Charas-Project') }}</span>
             </a>
           </h3>
-          <ul>
+          <ul class="nav">
             {% set section = section|default('home') %}
             {% include 'layout/navigation.html' %}
+          </ul>
+          <ul class="nav secondary-nav">
+            {% if user.is_authenticated() %}
+              {% call nav.dropdown('user', user.username) %}
+                {{ nav.dropdown_li(_('Logout'), url('users.logout')) }}
+              {% endcall %}
+            {% else %}
+              {{ nav.li('', _('Login'), url('users.login')) }}
+            {% endif %}
           </ul>
         </div>
       </div>
     </div>
-
     <section id="page-body" class="container">
       <div class="page-header">
         <h1>{% block page_header %}Charas-Project{% endblock %}</h1>

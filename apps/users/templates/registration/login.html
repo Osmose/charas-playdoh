@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% import 'include/forms.html' as forms %}
+
+{% block page_header %}
+  {{ _('Login') }}
+{% endblock %}
+
+{% block content %}
+  {{ forms.basic(form, '', 'post', csrf=csrf(), submit_label=_('Login')) }}
+{% endblock %}

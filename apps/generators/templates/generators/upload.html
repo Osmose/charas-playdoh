@@ -1,4 +1,6 @@
 {% extends 'base.html' %}
+{% import 'include/forms.html' as forms %}
+
 {% set section='generators' %}
 
 {% block page_header %}
@@ -13,23 +15,5 @@
       have been approved by a moderator.
     {% endtrans %}
   </p>
-  <form method="post" action="" class="form-stacked">
-    {{ csrf() }}
-    <fieldset>
-      {% for field in form %}
-        <div class="clearfix">
-          {{ field.label_tag() }}
-          <div class="input">
-            {{ field }}
-          </div>
-        </div>
-      {% endfor %}
-      <div class="actions">
-        <button type="submit" class="btn primary">{{ _('Upload') }}</button>
-        <a class="btn" href="{{ url('generators.gen_app', slug=generator.slug) }}">
-          {{ _('Cancel') }}
-        </a>
-      </div>
-    </fieldset>
-  </form>
+  {{ forms.basic(form, '', 'post', csrf=csrf(), submit_label=_('Upload')) }}
 {% endblock %}

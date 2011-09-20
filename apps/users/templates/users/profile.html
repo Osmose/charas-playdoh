@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block page_header %}
+  {{ _('Dashboard') }}
+{% endblock %}
+
+{% block content %}
+  <div class="row">
+    <div class="span4">
+      {{ gravatar_img(user) }}
+    </div>
+    <div class="span12">
+
+    </div>
+  </div>
+{% endblock %}

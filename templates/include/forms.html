@@ -1,0 +1,34 @@
+{% set submit = _('Submit') %}
+{% set cancel = _('Cancel') %}
+{% set cancel_url = url('home') %}
+
+{% macro basic(form, action, method,
+               csrf='',
+               submit_label=submit,
+               cancel_label=cancel,
+               cancel_href=cancel_url) -%}
+  <form method="{{ method }}" action="{{ action }}" class="form-stacked">
+    {{ csrf }}
+    <fieldset>
+      {% for field in form %}
+        <div class="clearfix {{ 'error' if field.errors else '' }}">
+          {{ field.label_tag() }}
+          <div class="input">
+            {{ field }}
+            {% for error in field.errors %}
+              <span class="help-block">
+                {{ error }}
+              </span>
+            {% endfor %}
+          </div>
+        </div>
+      {% endfor %}
+      <div class="actions">
+        <button type="submit" class="btn primary">{{ submit_label }}</button>
+        <a class="btn" href="{{ cancel_href }}">
+          {{ cancel_label }}
+        </a>
+      </div>
+    </fieldset>
+  </form>
+{%- endmacro %}

@@ -38,6 +38,7 @@ MINIFY_BUNDLES = {
 INSTALLED_APPS = list(INSTALLED_APPS) + [
     'charas_project',
     'generators',
+    'users',
     'tastypie',
     'django.contrib.sites',
     'django.contrib.messages',
@@ -53,6 +54,15 @@ def gen_resource_path(instance, filename):
 
 GENERATOR_RESOURCE_PATH = gen_resource_path
 MAX_FILEPATH_LENGTH = 100
+
+# Add Jingo loader
+TEMPLATE_LOADERS = [
+    'jingo.Loader',
+] + list(TEMPLATE_LOADERS)
+
+JINGO_EXCLUDE_APPS = [
+    'admin',
+]
 
 # Tells the extract script what files to look for L10n in and what function
 # handles the extraction. The Tower library expects this.

@@ -1,0 +1,21 @@
+{% macro li(section_value, name, href) -%}
+  <li {{ section|ifeq(section_value, 'class="active"') }}>
+    <a href="{{ href }}">{{ _(name) }}</a>
+  </li>
+{%- endmacro %}
+
+{% macro dropdown(section_value, name) %}
+  <li class="dropdown {{ section|ifeq(section_value, 'active') }}"
+      data-dropdown="dropdown">
+    <a class="dropdown-toggle" href="#">{{ _(name) }}</a>
+    <ul class="dropdown-menu">
+      {{ caller() }}
+    </ul>
+  </li>
+{% endmacro %}
+
+{% macro dropdown_li(name, href) %}
+  <li>
+    <a href="{{ href }}">{{ _(name) }}</a>
+  </li>
+{% endmacro %}

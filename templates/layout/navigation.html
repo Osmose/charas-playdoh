@@ -1,26 +1,6 @@
-{% macro nav_li(section_value, name, href) -%}
-  <li {{ section|ifeq(section_value, 'class="active"') }}>
-    <a href="{{ href }}">{{ _(name) }}</a>
-  </li>
-{%- endmacro %}
+{% import 'include/navigation.html' as nav %}
 
-{% macro nav_dropdown(section_value, name) %}
-  <li class="dropdown {{ section|ifeq(section_value, 'active') }}"
-      data-dropdown="dropdown">
-    <a class="dropdown-toggle" href="#">{{ _(name) }}</a>
-    <ul class="dropdown-menu">
-      {{ caller() }}
-    </ul>
-  </li>
-{% endmacro %}
-
-{% macro dropdown_li(name, href) %}
-  <li>
-    <a href="{{ href }}">{{ _(name) }}</a>
-  </li>
-{% endmacro %}
-
-{{ nav_li('home', 'Home', url('home')) }}
-{% call nav_dropdown('generators', 'Generators') %}
-  {{ dropdown_li('Charasets', url('generators.gen_app', slug='charasets')) }}
+{{ nav.li('home', 'Home', url('home')) }}
+{% call nav.dropdown('generators', 'Generators') %}
+  {{ nav.dropdown_li('Charasets', url('generators.gen_app', slug='charasets')) }}
 {% endcall %}
