@@ -14,6 +14,7 @@ MINIFY_BUNDLES = {
         'common': (
             'css/bootstrap.css',
             'css/layout.css',
+            'css/charas.css',
         ),
         'generators': (
             'css/generators.css',

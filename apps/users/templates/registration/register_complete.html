@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block page_header %}
+  {{ _('Registration complete') }}
+{% endblock %}
+
+{% block content %}
+  <p>
+    {% trans profile=url('users.profile') %}
+      Congratulations, you have successfully registered for the
+      Charas-Project! <a href="{{ profile }}">Check out your
+      profile</a> to get started.
+    {% endtrans %}
+  </p>
+{% endblock %}

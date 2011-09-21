@@ -1,0 +1,8 @@
+{% macro img_and_username(user) %}
+  <span class="user-img">
+    {{ gravatar_img(user, size=16) }}
+  </span>
+  <span class="username">
+    {{ user.username }}
+  </span>
+{% endmacro %}

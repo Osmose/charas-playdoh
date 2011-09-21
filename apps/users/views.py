@@ -1,8 +1,9 @@
-from django.contrib.auth import views
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth import authenticate, login as auth_login, views
 from django.shortcuts import render
 
 from session_csrf import anonymous_csrf
+
+from users.forms import RegistrationForm
 
 
 @anonymous_csrf
@@ -16,9 +17,12 @@ def profile(request):
 
 @anonymous_csrf
 def register(request):
-    form = UserCreationForm(request.POST or None)
+    form = RegistrationForm(request.POST or None)
     if request.POST and form.is_valid():
         form.save()
-        return render(request, 'users/register_complete.html')
+        user = authenticate(username=request.POST['username'],
+                            password=request.POST['password'])
+        auth_login(request, user)
+        return render(request, 'registration/register_complete.html')
 
-    return render(request, 'users/register/html', {'form': form})
+    return render(request, 'registration/register.html', {'form': form})

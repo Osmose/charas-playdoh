@@ -1,4 +1,5 @@
 {% import 'include/navigation.html' as nav %}
+{% import 'users/include/macros.html' as user_macros %}
 <!DOCTYPE html>
 <html LANG="{{ LANG }}" dir="{{ DIR }}">
   <head>
@@ -24,11 +25,14 @@
           </ul>
           <ul class="nav secondary-nav">
             {% if user.is_authenticated() %}
-              {% call nav.dropdown('user', user.username) %}
+              {% call nav.dropdown('user', user_macros.img_and_username(user)) %}
+                {{ nav.dropdown_li(_('Dashboard'), url('users.profile')) }}
+                {{ nav.divider() }}
                 {{ nav.dropdown_li(_('Logout'), url('users.logout')) }}
               {% endcall %}
             {% else %}
               {{ nav.li('', _('Login'), url('users.login')) }}
+              {{ nav.li('', _('Register'), url('users.register')) }}
             {% endif %}
           </ul>
         </div>
