@@ -50,6 +50,8 @@ class Resource(models.Model):
 
     def save(self, *args, **kwargs):
         """Generate preview and save as base64 png on save."""
+        # File may have been opened during validation, so we open it again.
+        self.resource.file.open()
 
         img = Image.open(self.resource.file)
         gen = self.part.generator

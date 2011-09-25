@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% import 'include/forms.html' as forms %}
+
+{% set section='generators' %}
+
+{% block page_header %}
+  {{ _('Resource upload successful!') }}
+{% endblock %}
+
+{% block content %}
+  <p>
+    {% trans %}
+      Your resource has been uploaded successfully! You will be
+      notified when a moderator has approved or deleted your resource
+      from the queue.
+    {% endtrans %}
+  </p>
+{% endblock %}

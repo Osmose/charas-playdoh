@@ -4,10 +4,14 @@
 
 {% macro basic(form, action, method,
                csrf='',
+               multipart=false,
                submit_label=submit,
                cancel_label=cancel,
                cancel_href=cancel_url) -%}
-  <form method="{{ method }}" action="{{ action }}" class="form-stacked">
+  <form method="{{ method }}"
+        action="{{ action }}"
+        class="form-stacked"
+        enctype="{{ 'multipart/form-data' if multipart else '' }}">
     {{ csrf }}
     <fieldset>
       {% for field in form %}

@@ -15,5 +15,8 @@
       have been approved by a moderator.
     {% endtrans %}
   </p>
-  {{ forms.basic(form, '', 'post', csrf=csrf(), submit_label=_('Upload')) }}
+  {{ forms.basic(form, '', 'post',
+                 csrf=csrf(),
+                 multipart=true,
+                 submit_label=_('Upload')) }}
 {% endblock %}

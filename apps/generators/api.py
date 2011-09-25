@@ -16,6 +16,6 @@ class PartResource(ModelResource):
 class ResourceResource(ModelResource):
     part = fields.ToOneField(PartResource, 'part')
     class Meta:
-        queryset = Resource.objects.all()
+        queryset = Resource.objects.filter(approved=True)
         resource_name = 'resource'
         filtering = {'part': ALL_WITH_RELATIONS}

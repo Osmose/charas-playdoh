@@ -18,6 +18,14 @@ class PartAdmin(admin.ModelAdmin):
 site.register(Part, PartAdmin)
 
 
+def preview_img(resource):
+    """Returns an HTML image of the resource's preview image."""
+    return '<img src="%s">' % resource.preview
+preview_img.allow_tags = True
+
+
 class ResourceAdmin(admin.ModelAdmin):
-    pass
+    list_display = ('__unicode__', 'part', 'approved', preview_img)
+    list_editable = ('approved',)
+    list_filter = ('part', 'part__generator')
 site.register(Resource, ResourceAdmin)
