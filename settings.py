@@ -16,6 +16,9 @@ MINIFY_BUNDLES = {
             'css/layout.css',
             'css/charas.css',
         ),
+        'home': (
+            'css/slide_pagination.css',
+        ),
         'generators': (
             'css/generators.css',
         ),
@@ -25,6 +28,10 @@ MINIFY_BUNDLES = {
             'js/libs/jquery-1.6.3.js',
             'js/libs/bootstrap-tabs.js',
             'js/libs/bootstrap-dropdown.js',
+        ),
+        'home': (
+            'js/libs/slides.jquery.js',
+            'js/home.js',
         ),
         'generators': (
             'js/libs/ICanHaz.js',
@@ -54,6 +61,7 @@ def gen_resource_path(instance, filename):
     return 'uploads/generators/%s/%s/%s' % (gen.slug, part.slug, filename)
 
 GENERATOR_RESOURCE_PATH = gen_resource_path
+FRONT_PAGE_FEATURE_PATH = 'uploads/frontpage/%Y/%m'
 MAX_FILEPATH_LENGTH = 100
 
 # Add Jingo loader

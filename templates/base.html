@@ -39,9 +39,11 @@
       </div>
     </div>
     <section id="page-body" class="container">
-      <div class="page-header">
-        <h1>{% block page_header %}Charas-Project{% endblock %}</h1>
-      </div>
+      {% if page_header %}
+        <div class="page-header">
+          <h1>{{ page_header }}</h1>
+        </div>
+      {% endif %}
       {% block content %}{% endblock %}
     </section>
     {% block site_js %}

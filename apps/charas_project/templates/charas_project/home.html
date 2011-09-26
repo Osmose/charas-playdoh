@@ -1,4 +1,32 @@
 {% extends 'base.html' %}
+
+{% block site_js %}
+  {{ super() }}
+  {{ js('home') }}
+{% endblock %}
+
+{% block site_css %}
+  {{ super() }}
+  {{ css('home') }}
+{% endblock %}
+
 {% block content %}
-  <p>Test</p>
+  <div id="slides" class="hero-unit">
+    <div class="slides_container">
+      {% for feature in features %}
+        <div>
+          {% if feature.image %}
+            <img src="{{ feature.image.url }}">
+          {% endif %}
+          <h1>{{ feature.headline }}</h1>
+          <p>{{ feature.body }}</p>
+          <p>
+            <a href="{{ feature.link }}" class="btn primary large">
+              {{ feature.button_text|default(_('Learn More'), true) }} &raquo;
+            </a>
+          </p>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
 {% endblock %}

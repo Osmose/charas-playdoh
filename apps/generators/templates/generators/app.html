@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% set section='generators' %}
+{% set page_header = _('Generator: %(generator_name)s') % {'generator_name':  generator.name} %}
 
 {% block site_css %}
   {{ super() }}
@@ -37,10 +38,6 @@
       </ul>
     </script>
   {% endraw %}
-{% endblock %}
-
-{% block page_header %}
-{{ _('Generator:') }} {{ generator.name }}
 {% endblock %}
 
 {% block content %}

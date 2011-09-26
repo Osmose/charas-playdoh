@@ -2,10 +2,8 @@
 {% import 'include/forms.html' as forms %}
 
 {% set section='generators' %}
-
-{% block page_header %}
-  {{ _('Upload Resource for Generator:') }} {{ generator.name }}
-{% endblock %}
+{% set page_header = _('Upload Resource for Generator: %(generator_name)s') %
+                     {'generator_name':  generator.name} %}
 
 {% block content %}
   <p>
