@@ -1,3 +1,6 @@
 [submodule "vendor"]
 	path = vendor
 	url = git://github.com/mozilla/playdoh-lib.git
+[submodule "vendor-local/src/easy_thumbnails"]
+	path = vendor-local/src/easy_thumbnails
+	url = git://github.com/SmileyChris/easy-thumbnails.git

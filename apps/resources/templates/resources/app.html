@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% set section='resources' %}
+{% set page_header = _('Complete Resources') %}
+
+{% block site_css %}
+  {{ super() }}
+  {{ css('resources') }}
+{% endblock %}
+
+{% block content %}
+<div id="resources_app">
+  <div class="row">
+    <div class="span4 columns">
+      <h2>{{ _('Categories') }}</h2>
+    </div>
+    <div class="span12 columns">
+      <h2>{{ _('Preview') }}</h2>
+    </div>
+  </div>
+  <div class="row actions app-bottombar">
+    <div class="span16 columns">
+    </div>
+  </div>
+</div>
+{% endblock %}

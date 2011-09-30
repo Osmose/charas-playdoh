@@ -10,6 +10,7 @@ autodiscover()
 urlpatterns = patterns('',
     (r'', include('charas_project.urls')),
     (r'^generators/', include('generators.urls')),
+    (r'^resources/', include('resources.urls')),
     (r'^accounts/', include('users.urls')),
     (r'^admin/', include(admin.site.urls)),
 

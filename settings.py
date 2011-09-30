@@ -20,7 +20,12 @@ MINIFY_BUNDLES = {
             'css/slide_pagination.css',
         ),
         'generators': (
+            'css/app.css',
             'css/generators.css',
+        ),
+        'resources': (
+            'css/app.css',
+            'css/resources.css',
         ),
     },
     'js': {
@@ -43,9 +48,18 @@ MINIFY_BUNDLES = {
 }
 
 
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
+        'LOCATION': '127.0.0.1:11211',
+    }
+}
+
+
 INSTALLED_APPS = list(INSTALLED_APPS) + [
     'charas_project',
     'generators',
+    'resources',
     'users',
     'tastypie',
     'django.contrib.sites',
@@ -60,7 +74,14 @@ def gen_resource_path(instance, filename):
 
     return 'uploads/generators/%s/%s/%s' % (gen.slug, part.slug, filename)
 
+def cr_resource_path(instance, filename):
+    maker = instance.maker
+    category = instance.category.slug
+
+    return 'uploads/complete_resources/%s/%s/%s' % (maker, category, filename)
+
 GENERATOR_RESOURCE_PATH = gen_resource_path
+CR_RESOURCE_PATH = cr_resource_path
 FRONT_PAGE_FEATURE_PATH = 'uploads/frontpage/%Y/%m'
 MAX_FILEPATH_LENGTH = 100
 
