@@ -12,6 +12,18 @@
   <div class="row">
     <div class="span4 columns">
       <h2>{{ _('Categories') }}</h2>
+      <ul class="gamemakers">
+        {% for maker in gamemakers %}
+          <li>
+            <span>{{ maker['name'] }}</span>
+            <ul class="categories">
+              {% for category in maker['categories'] %}
+                <li><a href="#">{{ _(category.name) }}</a></li>
+              {% endfor %}
+            </ul>
+          </li>
+        {% endfor %}
+      </ul>
     </div>
     <div class="span12 columns">
       <h2>{{ _('Preview') }}</h2>
