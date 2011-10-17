@@ -33,6 +33,7 @@ MINIFY_BUNDLES = {
             'js/libs/jquery-1.6.3.js',
             'js/libs/bootstrap-tabs.js',
             'js/libs/bootstrap-dropdown.js',
+            'js/utils.js',
         ),
         'home': (
             'js/libs/slides.jquery.js',
@@ -43,6 +44,13 @@ MINIFY_BUNDLES = {
             'js/libs/base64.js',
             'js/libs/canvas2image.js',
             'js/generators.js',
+        ),
+        'resources': (
+            'js/libs/ICanHaz.js',
+            'js/libs/signals.js',
+            'js/libs/crossroads.js',
+            'js/libs/hasher.js',
+            'js/resources.js',
         ),
     }
 }
@@ -75,7 +83,7 @@ def gen_resource_path(instance, filename):
     return 'uploads/generators/%s/%s/%s' % (gen.slug, part.slug, filename)
 
 def cr_resource_path(instance, filename):
-    maker = instance.maker
+    maker = instance.category.maker
     category = instance.category.slug
 
     return 'uploads/complete_resources/%s/%s/%s' % (maker, category, filename)

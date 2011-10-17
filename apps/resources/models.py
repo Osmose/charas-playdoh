@@ -22,13 +22,18 @@ class Category(ModelBase):
 
     def save(self, *args, **kwargs):
         if not self.slug:
-            self.slug = slugify(self.name)
+            self.slug = slugify('%s-%s' % (self.maker, self.name))
         super(Category, self).save(*args, **kwargs)
+
+    def __unicode__(self):
+        return self.name
 
 
 class Resource(ModelBase):
     category = models.ForeignKey(Category)
     author = models.ForeignKey(User, related_name='cr_resource_set')
+    created = models.DateTimeField(auto_now_add=True)
+    modified = models.DateTimeField(auto_now=True)
 
     name = models.CharField(max_length=255)
     description = models.TextField()

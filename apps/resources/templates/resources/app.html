@@ -7,26 +7,49 @@
   {{ css('resources') }}
 {% endblock %}
 
+{% block site_js %}
+  {{ super() }}
+  {{ js('resources') }}
+
+  {# ICanHaz.js Templates #}
+  {% raw %}
+    <script type="text/html" id="resource_grid">
+      <ul class="media-grid">
+        {{#resources}}
+          <li>
+            <a href="#">
+              <img src="{{ upload }}">
+            </a>
+          </li>
+        {{/resources}}
+      </ul>
+    </script>
+
+    <script type="text/html" id="category_tree">
+      {{#gamemakers}}
+        <li>
+          <span>{{ name }}</span>
+          <ul class="categories">
+            {{#categories}}
+              <li><a href="#/category/{{ slug }}">{{ name }}</a></li>
+            {{/categories}}
+          </ul>
+        </li>
+      {{/gamemakers}}
+    </script>
+  {% endraw %}
+{% endblock %}
+
 {% block content %}
-<div id="resources_app">
+<div id="resources-app" data-gamemakers="{{ gamemakers }}">
   <div class="row">
     <div class="span4 columns">
       <h2>{{ _('Categories') }}</h2>
-      <ul class="gamemakers">
-        {% for maker in gamemakers %}
-          <li>
-            <span>{{ maker['name'] }}</span>
-            <ul class="categories">
-              {% for category in maker['categories'] %}
-                <li><a href="#">{{ _(category.name) }}</a></li>
-              {% endfor %}
-            </ul>
-          </li>
-        {% endfor %}
-      </ul>
+      <ul id="categories"></ul>
     </div>
     <div class="span12 columns">
-      <h2>{{ _('Preview') }}</h2>
+      <h2 id="app-heading">{{ _('Loading') }}</h2>
+      <div id="app-body"></div>
     </div>
   </div>
   <div class="row actions app-bottombar">
