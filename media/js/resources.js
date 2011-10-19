@@ -7,11 +7,12 @@ var app = $('#resources-app'),
     app_heading = $('#app-heading'),
     app_categories = $('#categories'),
 
-    gamemakers = app.data('gamemakers');
+    gamemakers = app.data('gamemakers'),
+    category_map = {},
+    gamemaker_map = {},
+    resource_map = {};
 
 // Populate slug-to-obj maps
-var category_map = {},
-    gamemaker_map = {};
 for (var k = 0; k < gamemakers.length; k++) {
     var maker = gamemakers[k];
     gamemaker_map[maker['slug']] = maker;
@@ -26,15 +27,11 @@ crossroads.routed.add(console.log, console);
 
 // Show a list of recent CR uploads
 crossroads.addRoute('recent', function() {
-    $.ajax({
-        url: RESOURCE_API,
-        data: {order_by: 'created'},
-        success: function(data) {
-            app_heading.text('Recent Resources');
-            app_body.html(ich.resource_grid({
-                resources: data.objects
-            }));
-        }
+    loadResources({order_by: 'created'}, function(resources) {
+        app_heading.text('Recent Resources');
+        app_body.html(ich.resource_grid({
+            resources: resources
+        }));
     });
 });
 
@@ -43,19 +40,50 @@ crossroads.addRoute('category/{slug}', function(slug) {
     var category = getattr(category_map, slug);
     if (category !== null) {
         var maker = gamemaker_map[category['maker']];
-        $.ajax({
-            url: RESOURCE_API,
-            data: {category__slug__exact: slug, order_by: 'created'},
-            success: function(data) {
+        var filters = {category__slug__exact: slug, order_by: 'created'};
 
-                app_heading.text(maker['name'] + ': ' + category['name']);
-                app_body.html(ich.resource_grid({
-                    resources: data.objects
-                }));
-            }
+        loadResources(filters, function(resources) {
+            app_heading.text(maker['name'] + ': ' + category['name']);
+            app_body.html(ich.resource_grid({
+                resources: resources
+            }));
         });
     }
 });
+
+// Show details about a resource
+crossroads.addRoute('resource/{id}', function(id) {
+    var resource = getattr(resource_map, id);
+
+    if (resource !== null) {
+        app_heading.text(resource['name']);
+        app_body.html(ich.resource_detail({
+            resource: resource,
+            details: [
+                ['Title:', resource['name']],
+                ['Author:', resource['author']],
+                ['Uploaded:', resource['created']],
+                ['Description:', resource['description']]
+            ]
+        }));
+    }
+});
+
+// Loads resources and caches them in resource_map
+function loadResources(filters, success) {
+    $.ajax({
+        url: RESOURCE_API,
+        data: filters,
+        success: function(data) {
+            for (var k = 0; k < data.objects.length; k++) {
+                var resource = data.objects[k];
+                resource_map[resource['id']] = resource;
+            }
+
+            success(data.objects);
+        }
+    });
+}
 
 $(function() {
     // Generate category listing

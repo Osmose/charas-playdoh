@@ -1,3 +1,4 @@
+from markdown2 import markdown
 from tastypie import fields
 from tastypie.resources import ModelResource, ALL, ALL_WITH_RELATIONS
 
@@ -16,6 +17,9 @@ class CategoryResource(ModelResource):
 
 class ResourceResource(ModelResource):
     category = fields.ToOneField(CategoryResource, 'category')
+
+    def dehydrate_description(self, bundle):
+        return markdown(bundle.data['description'])
 
     class Meta:
         queryset = Resource.objects.filter(approved=True)
