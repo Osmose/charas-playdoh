@@ -10,7 +10,8 @@ var app = $('#resources-app'),
     gamemakers = app.data('gamemakers'),
     category_map = {},
     gamemaker_map = {},
-    resource_map = {};
+
+    Resource = new Manager(RESOURCE_API);
 
 // Populate slug-to-obj maps
 for (var k = 0; k < gamemakers.length; k++) {
@@ -27,7 +28,7 @@ crossroads.routed.add(console.log, console);
 
 // Show a list of recent CR uploads
 crossroads.addRoute('recent', function() {
-    loadResources({order_by: 'created'}, function(resources) {
+    Resource.order_by('created').eval().done(function(resources) {
         app_heading.text('Recent Resources');
         app_body.html(ich.resource_grid({
             resources: resources
@@ -42,7 +43,7 @@ crossroads.addRoute('category/{slug}', function(slug) {
         var maker = gamemaker_map[category['maker']];
         var filters = {category__slug__exact: slug, order_by: 'created'};
 
-        loadResources(filters, function(resources) {
+        Resource.filter(filters).eval().done(function(resources) {
             app_heading.text(maker['name'] + ': ' + category['name']);
             app_body.html(ich.resource_grid({
                 resources: resources
@@ -53,37 +54,21 @@ crossroads.addRoute('category/{slug}', function(slug) {
 
 // Show details about a resource
 crossroads.addRoute('resource/{id}', function(id) {
-    var resource = getattr(resource_map, id);
-
-    if (resource !== null) {
+    Resource.get({id: id}).done(function(resource) {
         app_heading.text(resource['name']);
         app_body.html(ich.resource_detail({
             resource: resource,
             details: [
                 ['Title:', resource['name']],
                 ['Author:', resource['author']],
-                ['Uploaded:', resource['created']],
+                ['Uploaded:', (new Date(resource['created'])).toDateString()],
                 ['Description:', resource['description']]
             ]
         }));
-    }
-});
-
-// Loads resources and caches them in resource_map
-function loadResources(filters, success) {
-    $.ajax({
-        url: RESOURCE_API,
-        data: filters,
-        success: function(data) {
-            for (var k = 0; k < data.objects.length; k++) {
-                var resource = data.objects[k];
-                resource_map[resource['id']] = resource;
-            }
-
-            success(data.objects);
-        }
+    }).fail(function() {
+        app_heading.text('Failure');
     });
-}
+});
 
 $(function() {
     // Generate category listing
@@ -97,7 +82,10 @@ $(function() {
     hasher.init(); //start listening for history change
 
     // Init app with recent route
-    hasher.setHash('recent');
+    var curHash = hasher.getHash();
+    if (curHash == '') {
+        hasher.setHash('recent');
+    }
 });
 
 })();

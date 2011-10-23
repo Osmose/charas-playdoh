@@ -24,5 +24,5 @@ class ResourceResource(ModelResource):
     class Meta:
         queryset = Resource.objects.filter(approved=True)
         resource_name = 'resource'
-        filtering = {'category': ALL_WITH_RELATIONS}
+        filtering = {'category': ALL_WITH_RELATIONS, 'id': ALL}
         ordering = ['created']

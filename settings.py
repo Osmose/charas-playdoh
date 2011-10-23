@@ -50,6 +50,7 @@ MINIFY_BUNDLES = {
             'js/libs/signals.js',
             'js/libs/crossroads.js',
             'js/libs/hasher.js',
+            'js/query.js',
             'js/resources.js',
         ),
     }
