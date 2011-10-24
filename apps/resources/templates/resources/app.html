@@ -40,18 +40,25 @@
 
     <script type="text/html" id="resource_detail">
       {{#resource}}
-        <div class="resource-display">
+        <div class="resource-display well">
           <img src="{{ upload }}">
         </div>
       {{/resource}}
       {{#details}}
         <div class="row">
-          <div class="span2">{{ 0 }}</div>
+          <div class="span2 data-label">{{ 0 }}</div>
           <div class="span10">{{{ 1 }}}</div>
         </div>
       {{/details}}
     </script>
   {% endraw %}
+{% endblock %}
+
+{% block page_header %}
+  <div class="heading-button">
+    <a class="btn success">Upload +</a>
+  </div>
+  {{ super() }}
 {% endblock %}
 
 {% block content %}
@@ -62,9 +69,6 @@
       <ul id="categories"></ul>
     </div>
     <div class="span12 columns">
-      <div class="heading-button">
-        <a class="btn success">Upload +</a>
-      </div>
       <h2 id="app-heading">{{ _('Loading') }}</h2>
       <div id="app-body"></div>
     </div>

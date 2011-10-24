@@ -5,17 +5,14 @@
 
 .heading-button {
     float: right;
+    padding-top: 4px;
 }
 
-.btn.large .add-on {
-    border-left: 1px solid #509E50;
-    float: right;
-    font-size: 26px;
+.resource-display {
+    text-align: center;
+}
+
+.data-label {
     font-weight: bold;
-    height: 37px;
-    margin-bottom: -18px;
-    margin-left: 14px;
-    padding-left: 14px;
-    position: relative;
-    top: -9px;
+    text-align: right;
 }

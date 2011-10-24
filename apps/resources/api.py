@@ -17,9 +17,13 @@ class CategoryResource(ModelResource):
 
 class ResourceResource(ModelResource):
     category = fields.ToOneField(CategoryResource, 'category')
+    author = fields.CharField()
 
     def dehydrate_description(self, bundle):
         return markdown(bundle.data['description'])
+
+    def dehydrate_author(self, bundle):
+        return bundle.obj.author.username
 
     class Meta:
         queryset = Resource.objects.filter(approved=True)
